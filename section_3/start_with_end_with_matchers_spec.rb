@@ -3,10 +3,16 @@ RSpec.describe 'start and end with matchers' do
 
     it { is_expected.to start_with "D" }
     it { is_expected.to end_with "n" }
+
+    it { is_expected.not_to start_with "n" }
+    it { is_expected.not_to end_with "D" }
   end
 
-  describe [:D, :o, :n] do
-    it { is_expected.to start_with :D }
-    it { is_expected.to end_with :n }
+  describe [:U, :s, :b, :a, :l] do
+    it { is_expected.to start_with :U, :s}
+    it { is_expected.to end_with :a, :l }
+
+    it { is_expected.not_to start_with :l }
+    it { is_expected.not_to end_with :U }
   end
 end
