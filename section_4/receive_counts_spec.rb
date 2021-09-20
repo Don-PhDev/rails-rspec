@@ -50,7 +50,8 @@ RSpec.describe Movie do
     it 'expects an actor to do 3 actions' do
       # expect(stuntman).to receive(:explosions).once
       # expect(stuntman).to receive(:explosions).exactly(1).times
-      expect(stuntman).to receive(:explosions).at_most(1).times
+      # expect(stuntman).to receive(:explosions).at_most(1).times
+      expect(stuntman).to receive(:explosions).at_least(1).times
 
       # expect(stuntman).to receive(:act).twice
       # expect(stuntman).to receive(:act).exactly(2).times
