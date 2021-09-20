@@ -9,14 +9,14 @@ class Actor
   end
 
   def act
-    "I love you, baby"
+    "I will find you and I will kill you"
   end
 
   def fall_off_ladder
-    "Call my agent! No way!"
+    "No way!, Call my agent!"
   end
 
-  def light_on_fire
+  def explosions
     false
   end
 end
@@ -32,14 +32,27 @@ class Movie
     if actor.ready?
       actor.act
       actor.fall_off_ladder
-      actor.light_on_fire
+      actor.explosions
     end
   end
 end
 
-actor = Actor.new("James Bond")
-movie = Movie.new(actor)
-movie.start_shooting
+RSpec.describe Movie do
+  let(:stuntman) { double("Mr. Bond",
+                          ready?: true,
+                          act: "Any string",
+                          fall_off_ladder: "Let's do it",
+                          explosions: true
+                         ) }
+  subject { described_class.new(stuntman) }
 
-# RSpec.describe do
-# end
+  describe '#start_shooting_method' do
+    it 'expects an actor to do 3 actions' do
+      expect(stuntman).to receive(:ready?)
+      expect(stuntman).to receive(:act)
+      expect(stuntman).to receive(:fall_off_ladder)
+      expect(stuntman).to receive(:explosions)
+      subject.start_shooting
+    end
+  end
+end
